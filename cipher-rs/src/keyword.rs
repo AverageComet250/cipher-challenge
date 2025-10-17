@@ -6,9 +6,9 @@ use std::io;
 
 pub fn decipher(ciphertext: &str, aligned: bool) -> Option<String> {
     let _lock = io::stdout().lock();
-    let mut eta = Eta::new(dictionary::L_ENGLISH_ARR.len() / 10_000, TimeAcc::MILLI);
+    let mut eta = Eta::new(dictionary::ENGLISH_ARR.len() / 10_000, TimeAcc::MILLI);
 
-    for (i, word) in enumerate(&dictionary::L_ENGLISH_ARR) {
+    for (i, word) in enumerate(&dictionary::ENGLISH_ARR) {
         let mut cipher = vec![];
         let mut last = '0';
         for char in word.chars() {
@@ -54,7 +54,6 @@ pub fn decipher(ciphertext: &str, aligned: bool) -> Option<String> {
                 );
             }
         }
-        panic!();
     }
     None
 }

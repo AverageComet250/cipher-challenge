@@ -2,8 +2,8 @@ use phf::phf_map;
 use phf::phf_ordered_set;
 use phf::phf_set;
 
-pub static ENGLISH: phf::Set<&'static str> =
-    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/words_s.txt"));
+pub static ENGLISH_SET: phf::Set<&'static str> =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/set_words.txt"));
 
 pub static ALPHABET_SET: phf::OrderedSet<char> = phf_ordered_set! {
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -20,8 +20,8 @@ pub static LETTER_FREQ: [f64; 26] = [
     0.02758, 0.00978, 0.02360, 0.00150, 0.01974, 0.00074,
 ];
 
-pub static L_ENGLISH_ARR: [&str; 403978] =
-    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/words.txt"));
+pub static ENGLISH_ARR: [&str; 403995] =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/arr_words.txt"));
 
 pub static BIGRAM_FREQ: phf::Map<&str, f64> =
     include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/2gram.txt"));

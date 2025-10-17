@@ -9,7 +9,6 @@ pub fn uncipher_vec_aligned(cipher: &Vec<char>, text: &str) -> Option<String> {
 
 pub fn uncipher_map_aligned(cipher: HashMap<char, char>, text: &str) -> Option<String> {
     let unciphered = substitute(cipher, text);
-    dbg!(&unciphered);
     if is_unciphered_aligned(&unciphered) {
         return Some(unciphered);
     }
@@ -92,17 +91,19 @@ fn is_unciphered_aligned(text: &str) -> bool {
         .filter(|char| char.is_alphabetic() || char.is_whitespace())
         .collect();
     let chi_squared = chi2(&text_c);
-    if chi_squared < 45.0 {
+    if chi_squared < 5.0 {
         return true;
     } else if chi_squared < 100.0 {
         let words = text_w.split_whitespace();
         let wordcount = words.clone().count();
         let mut valid = 0;
         for word in words {
-            if dictionary::ENGLISH.contains(word.trim()) {
+            if dictionary::ENGLISH_SET.contains(word.trim()) {
                 valid += 1;
             } else {
-                dbg!(word);
+                println!(
+                    "Word not found in dictionary, consider adding it if it's a real word: {word}"
+                );
             }
         }
         if valid as f64 / wordcount as f64 >= 0.5 {
