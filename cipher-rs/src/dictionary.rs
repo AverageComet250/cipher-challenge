@@ -1,10 +1,6 @@
-use phf::phf_ordered_map;
+use phf::phf_map;
 use phf::phf_ordered_set;
 use phf::phf_set;
-
-pub static ENGLISH: phf::Set<&'static str> = phf_set! {
-    "you","i","the","to","a","it","and","that","of","is","in","what","we","me","this","he","for","my","on","have","your","do","no","was","not","are","don","be","know","can","with","but","all","so","just","here","there","they","like","get","she","go","if","right","out","about","up","him","at","now","one","come","oh","her","how","well","will","want","got","yeah","think","see","as","who","good","why","did","let","from","his","yes","when","going","l","an","time","back","okay","look","us","where","them","take","would","were","then","or","had","been","tell","our","man","some","say","really","gonna","hey","could","didn","by","has","something","too","need","more","way","down","make","never","very","only","over","people","because","little","please","love","give","should","sorry","said","mean","off","am","any","two","thank","even","much","doing","sure","thing","these","help","first","into","anything","still","sir","life","nothing","find","god","day","work","again","must","their","won","stop","maybe","call","wait","before","other","away","talk","after","night","home","uh","than","thought","put","great","last","those","better","everything","told","new","always","things","long","keep","leave","years","money","does","doesn","around","name","father","guy","place","feel","ever","guys","old","made","isn","big","which","nice","girl","hello","believe","done","ok","lot","fine","someone","thanks","house","wanted","coming","kind","every","stay","left","mother","through","being","enough","may","course","dad","happened","wrong","listen","bad","came","understand","three","today","world","another","hear","remember","might","ask","own","same","kill","show","else","talking","found","care","son","car","next","getting","try","looking","woman","dead","hi","went","many","friend","mind","hell","wasn","mom","boy","best","yourself","morning","together","saw","trying","job","without","real","baby","family","room","move","already","wouldn","live","seen","miss","most","shit","actually","once","heard","brother","head","ready","happy","huh","hold","such","called","both","used","knew","men","haven","idea","wife","yet","took","fuck","also","pretty","days","since","while","whole","tomorrow","start","use","door","bit","matter","bring","meet","tonight","guess","run","alone","everyone","school","gone","hard","myself","wanna","play","problem","end","saying","open","couldn","friends","fucking","ago","killed","looks","few","gotta","ah","anyone","phone","hope","lost","excuse","face","um","until","die","turn","police","heart","wants","says","true","worry","soon","business","case","later","each","watch","year","hand","having","beautiful","doctor","eat","sit","probably","thinking","late","forget","young","second","kids","kid","pay","crazy","water","death","working","under","stuff","minute","part","person","everybody","damn","drink","gave","change","exactly","happen","shut","five","knows","eyes","hit","far","aren","easy","whatever","its","hands","taking","times","check","minutes","music","inside","sleep","means","somebody","mine","deal","different","asked","makes","point","afraid","body","anyway","dear","four","shall","ain","chance","close","making","waiting","party","daughter","comes","word","against","fun","number","married","hurt","story","set","wish","least","quite","important","girls","husband","fire","nobody","fight","children","rest","moment","week","read","stand","game","cut","sister","speak","child","side","women","supposed","started","between","hours","goes","blood","though","truth","lady","anymore","behind","almost","shot","gets","war","break","walk","yours","able","reason","trouble","met","city","town","trust","mr","brought","died","question","buy","office","half","bye","high","free","s","welcome","couple","either","hurry","telling","stupid","honey","power","wow","tried","bed","front","cool","answer","playing","seems","boys","send","gun","line","team","news","months","captain","save","full","hate","sometimes","become","whoa","lord","along","dog","outside","food","light","order","hot","funny","clear","needs","six","country","alive","pick","em","fact","ahead","black","boss","living","lose","feeling","leaving","cause","dinner","shouldn","promise","king","running","plan","taken","sort","book","ma","sent","anybody","hour","white","small","alright","sick","parents","uncle","lives","safe","perfect","poor","ass","shoot","scared","special","serious","himself","red","perhaps","touch","earth","john","sounds","company","past","cannot","possible","bitch","ha","sound","sighs","hair","human","drive","luck","asking","top","win","glad","daddy","control","o","cold","ten","air","happens","master","jack","till","dance","sex","others","hospital","street","hang","fast","words","follow","seem","murder","finally","lie","dream","catch","write","evening","meeting","sweet","hmm","sense","lucky","known","laughs","jesus","bet","voice","sign","million","quiet","felt","rather","careful","somewhere","longer","beat","return","laughing","coffee","date","pull","secret","calling","less","t","looked","worked","weeks","fault","gentlemen","fall","given","seeing","song","weren","straight","calm","changed","mad","loved","takes","road","learn","drop","wonderful","future","ladies","explain","chuckles","clean","throw","early","yesterday","step","turned","feet","piece","picture","land","quick","wonder","worth","darling","questions","absolutely","president","eye","giving","ooh","none","dude","moving","state","ones","speaking","figure","goodbye","sam","strange","strong","act","wedding","law","kiss","works","report","tired","pain","marry","pass","wake","kidding","general","missing","ship","needed","choice","class","weird","worried","officer","decided","amazing","busy","kept","worse","happening","mistake","chief","ya","forgive","age","sell","michael","mouth","caught","finish","during","clothes","ride","birthday","meant","born","watching","building","dark","eh","system","sing","film","court","tv","movie","month","wear","train","lying","seven","totally","imagine","hotel","evidence","security","completely","suppose","instead","christmas","unless","information","bag","hasn","certainly","attack","broke","round","expect","near","blue","terrible","thinks","definitely","forever","frank","station","except","table","message","history","swear","george","fool","talked","ring","buddy","entire","lovely","floor","sun","handle","army","david","d","joe","spend","charlie","across","finished","marriage","letter","ran","seriously","paid","bought","york","attention","anywhere","dangerous","peace","simple","forgot","situation","middle","rock","test","lead","protect","club","fear","fair","present","idiot","join","interesting","tom","bill","box","sitting","short","ball","single","group","using","enjoy","normal","boat","count","bastard","crime","key","force","horse","lunch","american","quickly","paper","charge","mike","surprise","space","fell","honor","eight","accident","wearing","fish","bar","ground","problems","government","miles","relax","crying","bank","cover","major","stopped","interested","hide","stick","sea","tea","area","agree","difficult","personal","deep","dress","service","certain","trip","radio","blow","smart","mark","star","record","offer","america","prison","angry","peter","soul","rich","list","gold","afternoon","whether","y","agent","missed","proud","detective","fix","respect","public","fighting","girlfriend","drunk","park","killing","saved","brain","forward","sad","cell","mess","standing","smell","fly","killer","tough","scene","card","english","dare","broken","m","mary","hungry","church","ice","window","paul","share","third","laugh","calls","often","within","spent","feels","lieutenant","cry","mum","visit","honest","seat","mama","teacher","relationship","moved","pleasure","camera","starting","bloody","lived","college","judge","cops","position","sake","screaming","boyfriend","wall","teach","neither","prove","loves","besides","realize","private","ben","impossible","walking","carry","accept","especially","liked",
-};
 
 pub static ALPHABET_SET: phf::OrderedSet<char> = phf_ordered_set! {
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -15,34 +11,20 @@ pub static ALPHABET_ARRAY: [char; 26] = [
     't', 'u', 'v', 'w', 'x', 'y', 'z',
 ];
 
-pub static LETTER_FREQ: phf::OrderedMap<char, f64> = phf_ordered_map! {
-    'e' => 0.12702,
-    't' => 0.09056,
-    'a' => 0.08167,
-    'o' => 0.07507,
-    'i' => 0.06966,
-    'n' => 0.06749,
-    's' => 0.06327,
-    'h' => 0.06094,
-    'r' => 0.05987,
-    'd' => 0.04253,
-    'l' => 0.04025,
-    'c' => 0.02782,
-    'u' => 0.02758,
-    'm' => 0.02406,
-    'w' => 0.02360,
-    'f' => 0.02288,
-    'g' => 0.02015,
-    'y' => 0.01974,
-    'p' => 0.01929,
-    'b' => 0.01492,
-    'v' => 0.00978,
-    'k' => 0.00772,
-    'j' => 0.00153,
-    'x' => 0.00150,
-    'q' => 0.00095,
-    'z' => 0.00074,
-};
+pub static LETTER_FREQ: [f64; 26] = [
+    0.08167, 0.01492, 0.02782, 0.04253, 0.12702, 0.02288, 0.02015, 0.06094, 0.06966, 0.00153,
+    0.00772, 0.04025, 0.02406, 0.06749, 0.07507, 0.01929, 0.00095, 0.05987, 0.06327, 0.09056,
+    0.02758, 0.00978, 0.02360, 0.00150, 0.01974, 0.00074,
+];
 
-pub static L_ENGLISH_ARR: [&str; 403978] =
-    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/words.txt"));
+pub static ENGLISH_ARR: [&str; 403997] =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/arr_words.txt"));
+
+pub static BIGRAM_FREQ: phf::Map<&str, f64> =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/2gram.txt"));
+
+pub static TRIGRAM_FREQ: phf::Map<&str, f64> =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/3gram.txt"));
+
+pub static ENGLISH_SET: phf::Set<&'static str> =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/set_words.txt"));
