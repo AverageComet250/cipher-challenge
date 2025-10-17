@@ -1,7 +1,5 @@
 use std::io::{self, Write};
 
-use cipher_rs::{decipher_affine, decipher_keyword, decpipher_caeser};
-
 fn main() {
     let aligned = input_bool("Is the text split into words by whitespaces? [y/n] ");
 
@@ -12,7 +10,7 @@ fn main() {
 
     if aligned {
         println!("Trying caesar cipher");
-        let unciphered = decpipher_caeser(buffer.as_str());
+        let unciphered = cipher_rs::caesar::decipher(buffer.as_str());
         match unciphered {
             Some(plaintext) => {
                 println!("{}", plaintext);
@@ -22,7 +20,7 @@ fn main() {
         }
 
         println!("Trying affine cipher");
-        let unciphered = decipher_affine(buffer.as_str());
+        let unciphered = cipher_rs::affine::decipher(buffer.as_str());
         match unciphered {
             Some(plaintext) => {
                 println!("{}", plaintext);
@@ -32,7 +30,7 @@ fn main() {
         }
 
         println!("Trying keyword cipher");
-        let unciphered = decipher_keyword(buffer.as_str());
+        let unciphered = cipher_rs::keyword::decipher(buffer.as_str());
         match unciphered {
             Some(plaintext) => {
                 println!("{}", plaintext);
