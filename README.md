@@ -1,6 +1,7 @@
 # Already Completed
  - Caesar, affine and keyword (cipher-rs)
- - Frequency Analysis
+ - Frequency Analysis (basic ver)
 
 # Being worked on
-(ADD HERE)
+- Advanced Frequency Analysis (Shravan)
+- Polybius (Kyan - other repo)
