@@ -5,3 +5,4 @@
 # Being worked on
 - Advanced Frequency Analysis (Shravan)
 - Polybius (Kyan - other repo)
+- Automatic Cipher type detection by entropy, index of coincidence and frequency correlation (Patrick)
