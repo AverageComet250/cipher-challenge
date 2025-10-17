@@ -1,8 +1,7 @@
 # Already Completed
- - Caesar, affine and keyword (cipher-rs)
+ - cipher-rs: Detection of mono-alphabetic ciphers/poly-alphabetic ciphers, solving of both whitespaced and block-aligned caesar, affine and keyword (based on wordlist) cipher
  - Frequency Analysis (basic ver)
 
 # Being worked on
 - Advanced Frequency Analysis (Shravan)
 - Polybius (Kyan - other repo)
-- Automatic cipher type detection by entropy, index of coincidence and frequency correlation (Patrick, auto-cipher-detection branch)
