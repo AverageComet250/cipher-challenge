@@ -1,7 +1,11 @@
 use itertools::{Itertools, enumerate};
 use std::{collections::HashMap, io};
 
+pub mod affine;
+pub mod caesar;
+mod decipher_tools;
 pub mod dictionary;
+pub mod keyword;
 
 pub fn decpipher_caeser(orig_ciphertext: &str) -> Option<String> {
     let possible_ciphers = rotate_wheel(dictionary::ALPHABET_ARRAY.to_vec());
