@@ -25,12 +25,21 @@ words = cipher.split()
 # rewrite with generator
 
 threes = []
+twos =[]
+ones = []
 
 for word in words:
     if len(word) == 3:
         threes.append(word)
+    elif len(word) == 2:
+        twos.append(word)
+    elif len(word) == 1:
+        ones.append(word)
+
 
 printd(Counter(threes).most_common())
+printd(Counter(twos).most_common())
+printd(Counter(ones).most_common())
 
 conjunctions = []
 
