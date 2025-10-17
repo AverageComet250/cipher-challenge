@@ -1,4 +1,5 @@
 from collections import Counter
+import json
 
 try:
     import enchant
@@ -6,6 +7,20 @@ except ImportError:
     _has_enchant = False
 else:
     _has_enchant = True
+
+
+with open("./cipher-rs/data/words.txt", "r") as words:
+    data = "".join([line.rstrip() for line in words]).rstrip()
+    eval(f"data = {data}")
+    print(data)
+    words3 = []
+    for word in data: # replace with generator
+        print(word)
+        if len(word) == 3:
+            words3.append(word)
+
+# print(data)
+print(words3)
 
 def printd(counter):
     for item in counter:
@@ -59,10 +74,16 @@ printd(Counter(conjunctions).most_common())
 
 # round based substitution
 
-if _has_enchant == false:
+if _has_enchant == False:
     exit()
 
 for word in threes:
     if word in conjunctions:
         pass
-    key[key.find("t")] = letter
+
+    print(word)
+
+    break
+
+
+print(key)
