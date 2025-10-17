@@ -6,7 +6,7 @@ fn main() {
     let aligned = input_bool("Is the text split into words by whitespaces? [y/n] ");
 
     let mut buffer = String::new();
-    println!("Enter ciphertext below:")
+    println!("Enter ciphertext below:");
     io::stdin().read_line(&mut buffer).unwrap();
     buffer = buffer.to_lowercase();
 
