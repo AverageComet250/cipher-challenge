@@ -1,4 +1,4 @@
-use crate::{decipher_tools, dictionary};
+use crate::{dictionary, tools};
 
 use itertools::enumerate;
 use std::io;
@@ -24,13 +24,13 @@ pub fn decipher(orig_ciphertext: &str) -> Option<String> {
                 cipher.push(*char);
             }
         }
-        for char in &dictionary::ALPHABET_ARRAY[..(start_index + 2)] {
+        for char in &dictionary::ALPHABET_ARRAY[..(start_index + 2).min(26)] {
             if !cipher.contains(char) {
                 cipher.push(*char);
             }
         }
 
-        if let Some(unciphered) = decipher_tools::vec(cipher, orig_ciphertext) {
+        if let Some(unciphered) = tools::vec(&cipher, orig_ciphertext) {
             return Some(unciphered);
         }
 

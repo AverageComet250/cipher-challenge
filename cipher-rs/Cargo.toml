@@ -7,3 +7,7 @@ edition = "2024"
 phf = { version = "0.13.1", features = ["macros"] }
 itertools = "0.14.0"
 ordered-float = "5.1.0"
+
+[profile.release]
+codegen-units = 1
+lto = false

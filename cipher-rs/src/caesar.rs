@@ -1,12 +1,25 @@
-use crate::{decipher_tools, dictionary};
+use crate::{dictionary, tools};
 
-pub fn decipher(orig_ciphertext: &str) -> Option<String> {
+pub fn decipher(orig_ciphertext: &str, aligned: bool) -> Option<String> {
     let possible_ciphers = rotate_wheel(dictionary::ALPHABET_ARRAY.to_vec());
 
-    for cipher in possible_ciphers {
-        if let Some(unciphered) = decipher_tools::vec(cipher, orig_ciphertext) {
-            return Some(unciphered);
+    if aligned {
+        for cipher in possible_ciphers {
+            if let Some(unciphered) = tools::vec(&cipher, orig_ciphertext) {
+                return Some(unciphered);
+            }
         }
+    } else {
+        let mut smallest_chi2 = 100000.0;
+        let mut nearest_key = vec![];
+        for cipher in possible_ciphers {
+            let chi2 = tools::chi2_vec(&cipher, orig_ciphertext);
+            if chi2 < smallest_chi2 {
+                nearest_key = cipher;
+                smallest_chi2 = chi2;
+            }
+        }
+        return Some(tools::uncipher_key_vec(&nearest_key, orig_ciphertext));
     }
     None
 }
