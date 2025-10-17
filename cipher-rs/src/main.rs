@@ -11,6 +11,7 @@ fn main() {
     match cipher_rs::detection::autodetect(&buffer) {
         cipher_rs::CipherType::Monoalphabetic => monoalphabetic(&buffer, aligned),
         cipher_rs::CipherType::Polyalphabetic => polyalphabetic(&buffer, aligned),
+        _ => panic!("Cannot decipher this type of cipher,"),
     }
 }
 
@@ -30,7 +31,7 @@ fn monoalphabetic(ciphertext: &str, aligned: bool) {
     }
 
     println!("\n\nTrying affine cipher");
-    let unciphered = cipher_rs::affine::decipher(ciphertext);
+    let unciphered = cipher_rs::affine::decipher(ciphertext, aligned);
     match unciphered {
         Some(plaintext) => {
             println!("{}", plaintext);
@@ -40,7 +41,7 @@ fn monoalphabetic(ciphertext: &str, aligned: bool) {
     }
 
     println!("\n\nTrying keyword cipher");
-    let unciphered = cipher_rs::keyword::decipher(ciphertext);
+    let unciphered = cipher_rs::keyword::decipher(ciphertext, aligned);
     match unciphered {
         Some(plaintext) => {
             println!("{}", plaintext);

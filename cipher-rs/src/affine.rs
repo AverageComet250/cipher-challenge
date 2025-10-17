@@ -1,6 +1,6 @@
 use crate::{dictionary, tools};
 
-pub fn decipher(orig_ciphertext: &str) -> Option<String> {
+pub fn decipher(ciphertext: &str, aligned: bool) -> Option<String> {
     let mult: [usize; 12] = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
     let add = 0usize..=25usize;
 
@@ -11,10 +11,15 @@ pub fn decipher(orig_ciphertext: &str) -> Option<String> {
                 .enumerate()
                 .map(|(i, char)| (char, dictionary::ALPHABET_ARRAY[(i * m + a) % 26usize]))
                 .collect();
-            if let Some(unciphered) = tools::map(cipher, orig_ciphertext) {
-                dbg!(a);
-                dbg!(m);
-                return Some(unciphered);
+
+            let plaintext = if aligned {
+                tools::uncipher_map_aligned(cipher, ciphertext)
+            } else {
+                tools::uncipher_map_non_aligned(cipher, ciphertext)
+            };
+
+            if let Some(plaintext) = plaintext {
+                return Some(plaintext);
             }
         }
     }

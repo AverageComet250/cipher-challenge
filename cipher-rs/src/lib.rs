@@ -8,4 +8,5 @@ mod tools;
 pub enum CipherType {
     Monoalphabetic,
     Polyalphabetic,
+    Unknown,
 }

@@ -1,4 +1,4 @@
-use phf::phf_ordered_map;
+use phf::phf_map;
 use phf::phf_ordered_set;
 use phf::phf_set;
 
@@ -22,3 +22,9 @@ pub static LETTER_FREQ: [f64; 26] = [
 
 pub static L_ENGLISH_ARR: [&str; 403978] =
     include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/words.txt"));
+
+pub static BIGRAM_FREQ: phf::Map<&str, f64> =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/2gram.txt"));
+
+pub static TRIGRAM_FREQ: phf::Map<&str, f64> =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/3gram.txt"));
