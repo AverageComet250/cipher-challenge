@@ -1,5 +1,12 @@
 from collections import Counter
 
+try:
+    import enchant
+except ImportError:
+    _has_enchant = False
+else:
+    _has_enchant = True
+
 def printd(counter):
     for item in counter:
         print(f"\033[95m{item[0]}: \033[91m{item[1]}\033[00m", end=", ")
@@ -8,6 +15,7 @@ def printd(counter):
 
 
 alphabet = "abcdefghijklmnopqrstuvwxyz"
+key = "abcdefghijklmnopqrstuvwxyz"
 cipher = input()
 print()
 
@@ -48,3 +56,13 @@ for i, word in enumerate(words):
         conjunctions.append(words[i+1])
 
 printd(Counter(conjunctions).most_common())
+
+# round based substitution
+
+if _has_enchant == false:
+    exit()
+
+for word in threes:
+    if word in conjunctions:
+        pass
+    key[key.find("t")] = letter
