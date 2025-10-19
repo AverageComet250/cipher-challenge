@@ -6,3 +6,4 @@
 # Being worked on
 - Advanced Frequency Analysis (Shravan)
 - Polybius (Kyan - other repo)
+- Full monoalphabetic automatic deciphering
