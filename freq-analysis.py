@@ -4,19 +4,8 @@ import enchant
 import nltk
 
 
+words3 = [word for word, freq in Counter(word.lower() for word in nltk.corpus.brown.words() if word.isalpha() and len(word) == 3).most_common(500)]
 
-with open("./cipher-rs/data/words.txt", "r") as words:
-    data = "".join([line.rstrip() for line in words]).rstrip()
-    eval(f"data = {data}")
-    print(data)
-    words3 = []
-    for word in data: # replace with generator
-        print(word)
-        if len(word) == 3:
-            words3.append(word)
-
-# print(data)
-print(words3)
 
 def printd(counter):
     for item in counter:
