@@ -1,12 +1,8 @@
 from collections import Counter
 import json
+import enchant
+import nltk
 
-try:
-    import enchant
-except ImportError:
-    _has_enchant = False
-else:
-    _has_enchant = True
 
 
 with open("./cipher-rs/data/words.txt", "r") as words:
