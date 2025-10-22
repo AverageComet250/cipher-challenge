@@ -36,14 +36,18 @@ threes = []
 twos =[]
 ones = []
 
-for word in words:
-    if len(word) == 3:
-        threes.append(word)
-    elif len(word) == 2:
-        twos.append(word)
-    elif len(word) == 1:
-        ones.append(word)
+#for word in words:
+#    if len(word) == 3:
+#        threes.append(word)
+#    elif len(word) == 2:
+#        twos.append(word)
+#    elif len(word) == 1:
+#        ones.append(word)
 
+
+threes = [word for word in words if len(word) == 3]
+twos = [word for word in words if len(word) == 2]
+ones = [word for word in words if len(word) == 1]
 
 printd(Counter(threes).most_common())
 printd(Counter(twos).most_common())
