@@ -59,9 +59,6 @@ printd(Counter(conjunctions).most_common())
 
 # round based substitution
 
-if _has_enchant == False:
-    exit()
-
 for word in threes:
     if word in conjunctions:
         pass
