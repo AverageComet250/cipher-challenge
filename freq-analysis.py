@@ -10,12 +10,12 @@ words3 = [word for word, freq in Counter(word.lower() for word in nltk.corpus.br
 def printd(counter):
     for item in counter:
         print(f"\033[95m{item[0]}: \033[91m{item[1]}\033[00m", end=", ")
-    print()
-    print()
+    print("\n")
 
 
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 key = "abcdefghijklmnopqrstuvwxyz"
+print("ENTER CIPHER:")
 cipher = input()
 print()
 
