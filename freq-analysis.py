@@ -12,9 +12,13 @@ def printd(counter):
         print(f"\033[95m{item[0]}: \033[91m{item[1]}\033[00m", end=", ")
     print("\n")
 
+def streplace(old, new, index):
+    return f"{old[:index]}{new}{old[index+1:]}"
+
 
 alphabet = "abcdefghijklmnopqrstuvwxyz"
-key = "abcdefghijklmnopqrstuvwxyz"
+key = "**************************"
+new_key = "**************************"
 print("ENTER CIPHER:")
 cipher = input()
 print()
