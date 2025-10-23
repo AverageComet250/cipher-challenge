@@ -50,15 +50,84 @@ for i, word in enumerate(words):
 
 printd(Counter(conjunctions).most_common())
 
+
 # round based substitution
 
-for word in threes:
+# start by guessing for the, then for because, then for i and a
+
+print("Guessing for the")
+
+for word, _ in Counter(threes).most_common():
     if word in conjunctions:
-        pass
+        continue
 
     print(word)
-
+    key = streplace(key, word[0], 19)
+    key = streplace(key, word[1], 8)
+    key = streplace(key, word[2], 4)
     break
 
 
+print("Now Guessing but")
+
+for word, _ in Counter(conjunctions).most_common():
+    if len(word) != 3 or word[2] != key[19]:
+        continue
+    print(word)
+    key = streplace(key, word[0], 1)
+    key = streplace(key, word[1], 20)
+    # key = streplace(key, word[2], 19)
+
+
+#    print("Now Guessing because")
+#
+#    for word, _ in Counter(conjunctions).most_common():
+    #        if len(word) != 7 or word[1] != key[4]:
+    #        continue
+    #    print(word)
+    #    key = streplace(key, word[0], 1)
+    #    # key = streplace(key, word[1], 4)  # another e
+    #    key = streplace(key, word[2], 3)
+    #    key = streplace(key, word[3], 0)
+    #    key = streplace(key, word[4], 21)
+    #    key = streplace(key, word[5], 19)
+    #    # key = streplace(key, word[6], 4)  # another e
+    #
+    #    print(key)
+    #
+    #print(key)
+
+
+#cracked = cipher
+    #for i, letter in enumerate(alphabet):
+    #if letter == "*":
+    #    continue
+#cracked = cracked.lower().replace(letter, key[i])
+
+# This code block was GPT generated
+
+
+#result = ""
+    #for ch in cipher:
+    #if ch.isalpha():
+    #    upper = ch.upper()
+    #    rep = {alphabet[i]: key[i] for i in range(26)}.get(upper, "*")
+    #    result += rep if ch.isupper() else rep.lower()
+    #else:
+#    result += ch
+
+# Said Code block does not work lmao
+
+result = ""
+for letter in cipher:
+    if letter.isalpha():
+        try:
+            letter = alphabet[key.index(letter)]
+        except ValueError:
+            letter = "*"
+    result += letter
+
+
+print(result)
+print()
 print(key)
