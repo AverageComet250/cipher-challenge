@@ -118,14 +118,19 @@ for word, _ in Counter(conjunctions).most_common():
 
 # Said Code block does not work lmao
 
+#result = ""
+#for letter in cipher:
+#    if letter.isalpha():
+#        try:
+#            letter = alphabet[key.index(letter)]
+#        except ValueError:
+#            letter = "*"
+#    result += letter
+
 result = ""
 for letter in cipher:
     if letter.isalpha():
-        try:
-            letter = alphabet[key.index(letter)]
-        except ValueError:
-            letter = "*"
-    result += letter
+        ciph = key 
 
 
 print(result)
