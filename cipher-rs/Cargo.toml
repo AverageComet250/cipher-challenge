@@ -17,9 +17,3 @@ codegen-units = 1
 lto = 'fat'
 panic = 'abort'
 strip = true
-
-[build]
-rustflags = [
-    "-C", "target-cpu=native",   # optimize for your CPU
-    "-C", "opt-level=3"
-]
