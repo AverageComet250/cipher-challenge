@@ -41,6 +41,7 @@ pub fn decipher(ciphertext: &str, aligned: bool) -> Option<String> {
         };
 
         if let Some(plaintext) = plaintext {
+            dbg!(word);
             return Some(plaintext);
         }
 

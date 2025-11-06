@@ -13,9 +13,9 @@ pub fn decipher(ciphertext: &str, aligned: bool) -> Option<String> {
                 .collect();
 
             let plaintext = if aligned {
-                tools::uncipher_map_aligned(cipher, ciphertext)
+                tools::uncipher_map_aligned(&cipher, ciphertext)
             } else {
-                tools::uncipher_map_non_aligned(cipher, ciphertext)
+                tools::uncipher_map_non_aligned(&cipher, ciphertext)
             };
 
             if let Some(plaintext) = plaintext {

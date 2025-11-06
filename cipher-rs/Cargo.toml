@@ -7,8 +7,19 @@ edition = "2024"
 phf = { version = "0.13.1", features = ["macros"] }
 itertools = "0.14.0"
 eta = "0.2.2"
+num_cpus = "1.17.0"
+fastrand = "2.3.0"
+rayon = "1.10"
 
 
 [profile.release]
 codegen-units = 1
-lto = false
+lto = 'fat'
+panic = 'abort'
+strip = true
+
+[build]
+rustflags = [
+    "-C", "target-cpu=native",   # optimize for your CPU
+    "-C", "opt-level=3"
+]

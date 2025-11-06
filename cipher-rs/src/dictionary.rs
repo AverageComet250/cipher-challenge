@@ -17,6 +17,11 @@ pub static LETTER_FREQ: [f64; 26] = [
     0.02758, 0.00978, 0.02360, 0.00150, 0.01974, 0.00074,
 ];
 
+pub static LETTER_FREQ_ARRANG: [char; 26] = [
+    'z', 'q', 'x', 'j', 'k', 'v', 'b', 'p', 'y', 'g', 'f', 'w', 'm', 'u', 'c', 'l', 'd', 'r', 'h',
+    's', 'n', 'i', 'o', 'a', 't', 'e',
+];
+
 pub static ENGLISH_ARR: [&str; 403997] =
     include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/arr_words.txt"));
 
