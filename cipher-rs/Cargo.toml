@@ -17,3 +17,9 @@ codegen-units = 1
 lto = 'fat'
 panic = 'abort'
 strip = true
+
+[profile.fast-dev]
+inherits = "dev"
+codegen-units = 256
+lto = 'thin'
+opt-level = 2
