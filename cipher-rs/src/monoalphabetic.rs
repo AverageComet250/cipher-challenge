@@ -403,7 +403,7 @@ impl Phenotype {
         let mut total = 0.0;
         let mut letter = 27;
         let freqs = dictionary::LETTER_FREQ;
-        for (i, letter_freq) in freqs.enumerate() {
+        for (i, letter_freq) in freqs.iter().enumerate() {
             total += letter_freq;
             if total > selected {
                 letter = i;
