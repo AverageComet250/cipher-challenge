@@ -59,7 +59,14 @@ fn monoalphabetic(ciphertext: &str, aligned: bool) {
 }
 
 fn polyalphabetic(ciphertext: &str, aligned: bool) {
-    polyalphabetic::decipher(ciphertext, aligned);
+    println!("Recognised poly-alphabetic cipher, beginning decryption process...");
+    let unciphered = polyalphabetic::decipher(ciphertext, aligned);
+    match unciphered {
+        Some(plaintext) => {
+            println!("{}", plaintext);
+        }
+        None => println!("ERRORERRORERROR"),
+    }
 }
 
 fn input_bool(prompt: &str) -> bool {

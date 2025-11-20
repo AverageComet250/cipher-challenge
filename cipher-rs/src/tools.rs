@@ -26,6 +26,10 @@ pub fn uncipher_map_non_aligned(cipher: &HashMap<char, char>, text: &str) -> Opt
     None
 }
 
+pub fn substitute_vec(cipher: &[char], text: &str) -> String {
+    substitute(&cipher_vec_to_map(cipher), text)
+}
+
 fn cipher_vec_to_map(cipher: &[char]) -> HashMap<char, char> {
     cipher
         .iter()
@@ -63,11 +67,11 @@ fn is_unciphered_aligned(text: &str) -> bool {
     let chi_squared = freq_analysis::chi2(&text_c);
     if chi_squared < 60.0 {
         return true;
-    } else if chi_squared < 200.0 {
+    } else if chi_squared < 120.0 {
         let words = text_w.split_whitespace();
         let wordcount = words.clone().count();
-        let mut valid = 0;
-        if valid as f64 / wordcount as f64 >= 0.7 {
+        let valid = 0;
+        if valid as f64 / wordcount as f64 >= 0.8 {
             return true;
         }
     }
@@ -76,7 +80,7 @@ fn is_unciphered_aligned(text: &str) -> bool {
 
 fn is_unciphered_non_aligned(text: &str) -> bool {
     let score = englishness_score_non_aligned(text);
-    score > 0.8
+    score > 0.84
 }
 
 fn englishness_score(text: &str) -> f64 {

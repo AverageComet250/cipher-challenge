@@ -101,6 +101,7 @@ pub fn autocorrelation_score(text: &str, k: usize) -> f64 {
 
 pub fn kasiski_score(text: &str, k: usize) -> f64 {
     let mut possible = 0;
+    let mut max_possible = 0;
 
     let mut kasiski_3: HashMap<String, Vec<usize>> = HashMap::new();
     for (i, (c1, c2, c3)) in text.chars().tuple_windows().enumerate() {
@@ -121,12 +122,17 @@ pub fn kasiski_score(text: &str, k: usize) -> f64 {
     }
 
     for (_, positions) in kasiski_3 {
-        if positions.len() <= 2 {
-            if positions.len() == 2 && positions[0].abs_diff(positions[1]) % k == 0 {
-                possible += 1;
+        let n = positions.len();
+        if n <= 2 {
+            if n == 2 {
+                max_possible += 1;
+                if positions[0].abs_diff(positions[1]) % k == 0 {
+                    possible += 1;
+                }
             }
             continue;
         }
+        max_possible += 3 * n * (n - 1) / 2;
         possible += 3 * positions
             .iter()
             .tuple_combinations()
@@ -136,12 +142,17 @@ pub fn kasiski_score(text: &str, k: usize) -> f64 {
     }
 
     for (_, positions) in kasiski_4 {
-        if positions.len() <= 2 {
-            if positions.len() == 2 && positions[0].abs_diff(positions[1]) % k == 0 {
-                possible += 2;
+        let n = positions.len();
+        if n <= 2 {
+            if n == 2 {
+                max_possible += 2;
+                if positions[0].abs_diff(positions[1]) % k == 0 {
+                    possible += 2;
+                }
             }
             continue;
         }
+        max_possible += 4 * n * (n - 1) / 2;
         possible += 4 * positions
             .iter()
             .tuple_combinations()
@@ -150,13 +161,18 @@ pub fn kasiski_score(text: &str, k: usize) -> f64 {
             .count();
     }
 
-    for (_, positions) in kasiski_5 {
-        if positions.len() <= 2 {
-            if positions.len() == 2 && positions[0].abs_diff(positions[1]) % k == 0 {
-                possible += 3;
+    for (_, positions) in kasiski_5.iter() {
+        let n = positions.len();
+        if n <= 2 {
+            if n == 2 {
+                max_possible += 3;
+                if positions[0].abs_diff(positions[1]) % k == 0 {
+                    possible += 3;
+                }
             }
             continue;
         }
+        max_possible += 5 * n * (n - 1) / 2;
         possible += 5 * positions
             .iter()
             .tuple_combinations()
@@ -165,7 +181,7 @@ pub fn kasiski_score(text: &str, k: usize) -> f64 {
             .count();
     }
 
-    let t = (possible as f64 / 50.0).clamp(0.0, 1.0);
+    let t = (possible as f64 / max_possible as f64).clamp(0.0, 1.0);
     t * t * t * (t * (6.0 * t - 15.0) + 10.0)
 }
 

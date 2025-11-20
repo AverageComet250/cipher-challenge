@@ -398,7 +398,7 @@ impl Phenotype {
         }
     }
 
-    fn letter_mutation_linear(&mut self) {
+    fn _letter_mutation_linear(&mut self) {
         let selected = fastrand::f64();
         let mut total = 0.0;
         let mut letter = 27;
