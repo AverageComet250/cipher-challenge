@@ -46,6 +46,14 @@ fn substitute(cipher: &HashMap<char, char>, text: &str) -> String {
         .join("")
 }
 
+pub fn is_unciphered(text: &str, aligned: bool) -> bool {
+    if aligned {
+        is_unciphered_aligned(text)
+    } else {
+        is_unciphered_non_aligned(text)
+    }
+}
+
 fn is_unciphered_aligned(text: &str) -> bool {
     let text_c: String = text.chars().filter(|char| char.is_alphabetic()).collect();
     let text_w: String = text

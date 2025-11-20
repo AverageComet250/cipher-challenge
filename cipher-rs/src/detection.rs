@@ -11,7 +11,7 @@ pub fn autodetect(ciphertext: &str) -> CipherType {
 
     if (0.055..0.075).contains(&ioc) && (3.95..4.25).contains(&entropy) && chi2 > 200.0 {
         CipherType::Monoalphabetic
-    } else if (0.28..0.48).contains(&entropy) && (4.25..4.55).contains(&entropy) && chi2 > 200.0 {
+    } else if (0.028..0.048).contains(&ioc) && (4.25..4.70).contains(&entropy) && chi2 > 200.0 {
         CipherType::Polyalphabetic
     } else if (0.055..0.075).contains(&ioc) && (3.95..4.25).contains(&entropy) && chi2 <= 200.0 {
         CipherType::Transposition

@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use itertools::Itertools;
 
 use crate::dictionary;
@@ -80,4 +82,119 @@ pub fn trigram_log_score(text: &str) -> f64 {
         i += 1;
     }
     score / i as f64
+}
+
+pub fn autocorrelation_score(text: &str, k: usize) -> f64 {
+    let n = text.chars().count();
+    if n <= k {
+        return 0.0;
+    }
+
+    let sum = text
+        .chars()
+        .tuple_windows()
+        .filter(|(c1, c2)| c1 == c2)
+        .count();
+
+    sum as f64 / (n - k) as f64
+}
+
+pub fn kasiski_score(text: &str, k: usize) -> f64 {
+    let mut possible = 0;
+
+    let mut kasiski_3: HashMap<String, Vec<usize>> = HashMap::new();
+    for (i, (c1, c2, c3)) in text.chars().tuple_windows().enumerate() {
+        let key = [c1, c2, c3].iter().collect();
+        kasiski_3.entry(key).or_default().push(i);
+    }
+
+    let mut kasiski_4: HashMap<String, Vec<usize>> = HashMap::new();
+    for (i, (c1, c2, c3, c4)) in text.chars().tuple_windows().enumerate() {
+        let key = [c1, c2, c3, c4].iter().collect();
+        kasiski_4.entry(key).or_default().push(i);
+    }
+
+    let mut kasiski_5: HashMap<String, Vec<usize>> = HashMap::new();
+    for (i, (c1, c2, c3, c4, c5)) in text.chars().tuple_windows().enumerate() {
+        let key = [c1, c2, c3, c4, c5].iter().collect();
+        kasiski_5.entry(key).or_default().push(i);
+    }
+
+    for (_, positions) in kasiski_3 {
+        if positions.len() <= 2 {
+            if positions.len() == 2 && positions[0].abs_diff(positions[1]) % k == 0 {
+                possible += 1;
+            }
+            continue;
+        }
+        possible += 3 * positions
+            .iter()
+            .tuple_combinations()
+            .map(|(p1, p2)| (*p1).abs_diff(*p2))
+            .filter(|diff| diff % k == 0)
+            .count();
+    }
+
+    for (_, positions) in kasiski_4 {
+        if positions.len() <= 2 {
+            if positions.len() == 2 && positions[0].abs_diff(positions[1]) % k == 0 {
+                possible += 2;
+            }
+            continue;
+        }
+        possible += 4 * positions
+            .iter()
+            .tuple_combinations()
+            .map(|(p1, p2)| (*p1).abs_diff(*p2))
+            .filter(|diff| diff % k == 0)
+            .count();
+    }
+
+    for (_, positions) in kasiski_5 {
+        if positions.len() <= 2 {
+            if positions.len() == 2 && positions[0].abs_diff(positions[1]) % k == 0 {
+                possible += 3;
+            }
+            continue;
+        }
+        possible += 5 * positions
+            .iter()
+            .tuple_combinations()
+            .map(|(p1, p2)| (*p1).abs_diff(*p2))
+            .filter(|diff| diff % k == 0)
+            .count();
+    }
+
+    let t = (possible as f64 / 50.0).clamp(0.0, 1.0);
+    t * t * t * (t * (6.0 * t - 15.0) + 10.0)
+}
+
+pub fn friedman_score(text: &str, k: usize) -> f64 {
+    let n = text.chars().count() as f64;
+    let ic = index_of_coincidence(text);
+    let m = (0.027 * n) / ((n - 1.0) * ic - 0.038 * n + 0.065);
+    const EPSILON: f64 = 1e-6;
+    const ALPHA: f64 = 1.0;
+    let d = (k as f64 / (m + EPSILON)).ln().abs();
+    (-ALPHA * d).exp()
+}
+
+pub fn decomposition_score(text: &str, k: usize) -> f64 {
+    let n = text.chars().count();
+    let mut ic_sum = 0.0;
+    for j in 1..k {
+        let column: String = text
+            .chars()
+            .enumerate()
+            .filter(|(i, _)| *i == (n / j) % k)
+            .map(|(_, char)| char)
+            .collect();
+
+        let ic_c = index_of_coincidence(&column);
+        ic_sum += ic_c;
+    }
+
+    const I_RAND: f64 = 0.03846;
+    const I_ENG: f64 = 0.0667;
+    ((ic_sum - I_RAND) / (I_ENG - I_RAND)).clamp(0.0, 1.0)
 }

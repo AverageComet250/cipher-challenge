@@ -1,5 +1,7 @@
 use std::io::{self, Write};
 
+use cipher_rs::polyalphabetic;
+
 fn main() {
     let aligned = input_bool("Is the text split into words by whitespaces? [y/n] ");
 
@@ -56,8 +58,8 @@ fn monoalphabetic(ciphertext: &str, aligned: bool) {
     }
 }
 
-fn polyalphabetic(_ciphertext: &str, _aligned: bool) {
-    todo!();
+fn polyalphabetic(ciphertext: &str, aligned: bool) {
+    polyalphabetic::decipher(ciphertext, aligned);
 }
 
 fn input_bool(prompt: &str) -> bool {

@@ -5,8 +5,8 @@ pub mod dictionary;
 pub mod freq_analysis;
 pub mod keyword;
 pub mod monoalphabetic;
+pub mod polyalphabetic;
 mod tools;
-pub mod transpose;
 
 pub enum CipherType {
     Monoalphabetic,
