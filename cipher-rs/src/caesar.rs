@@ -1,3 +1,5 @@
+use itertools::Itertools;
+
 use crate::{
     dictionary,
     tools::{self, substitute_vec, uncipher_vec_and_score_non_aligned},
@@ -20,16 +22,20 @@ pub fn decipher(ciphertext: &str, aligned: bool) -> Option<String> {
     None
 }
 
-pub fn most_deciphered(ciphertext: &str) -> String {
-    let mut max = (vec![], 0.0);
+pub fn most_deciphered(ciphertext: &str) -> Vec<String> {
+    let mut scores = Vec::with_capacity(26);
     for shift in rotate_wheel(dictionary::ALPHABET_ARRAY.to_vec()) {
         let score = uncipher_vec_and_score_non_aligned(&shift, ciphertext);
-        if score > max.1 {
-            max = (shift, score)
-        }
+        scores.push((score, shift));
     }
 
-    substitute_vec(&max.0, ciphertext)
+    scores
+        .iter()
+        .filter(|(score, _)| *score > 0.5)
+        .sorted_by_key(|(score, _)| 100_000 - (score * 100_000.0) as i32)
+        .map(|(_, shift)| substitute_vec(shift, ciphertext))
+        .take(5)
+        .collect_vec()
 }
 
 fn rotate_wheel(mut wheel: Vec<char>) -> Vec<Vec<char>> {
