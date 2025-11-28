@@ -1,3 +1,5 @@
+use itertools::Itertools;
+
 use crate::{freq_analysis::kasiski_score, tools::is_unciphered};
 
 pub fn decipher(ciphertext: &str, _aligned: bool) -> Option<String> {
@@ -6,15 +8,20 @@ pub fn decipher(ciphertext: &str, _aligned: bool) -> Option<String> {
         .filter(|c| c.is_alphabetic() || *c == ' ')
         .collect();
     let letters: String = words.chars().filter(|c| c.is_alphabetic()).collect();
-    let mut max_keylen = (0.0, 123124);
+    let mut keylens = Vec::with_capacity(29);
     for k in 2..30 {
         let score = kasiski_score(&letters, k);
-        if score > max_keylen.0 {
-            max_keylen = (score, k)
+        keylens.push((score, k));
+    }
+    for (_, keylen) in keylens
+        .iter()
+        .sorted_by_key(|(score, _)| (score * 100_000.0) as i32)
+    {
+        if let Some(plain) = decipher_vignere(&letters, *keylen as i32) {
+            return Some(plain);
         }
     }
-    let keylen = max_keylen.1;
-    decipher_vignere(&letters, keylen as i32)
+    return None;
 }
 
 fn decipher_vignere(ciphertext: &str, prob_key_len: i32) -> Option<String> {
@@ -34,6 +41,9 @@ fn decipher_vignere(ciphertext: &str, prob_key_len: i32) -> Option<String> {
     }
 
     let plain = plain.iter().collect::<String>();
+
     let unciphered = is_unciphered(&plain, false);
     if unciphered { Some(plain) } else { None }
 }
+
+//fn decipher_vigenere_deep(ciphertext: &str, prob_key_len: i32) -> Option<String> {}
