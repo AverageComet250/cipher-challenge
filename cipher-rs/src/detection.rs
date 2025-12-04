@@ -1,3 +1,5 @@
+use itertools::Itertools;
+
 use crate::{CipherType, freq_analysis};
 
 pub fn autodetect(ciphertext: &str) -> CipherType {
@@ -9,11 +11,16 @@ pub fn autodetect(ciphertext: &str) -> CipherType {
     let entropy = freq_analysis::entropy(&ciphertext);
     let chi2 = freq_analysis::chi2(&ciphertext);
 
-    if (0.055..0.075).contains(&ioc) && (3.95..4.25).contains(&entropy) && chi2 > 200.0 {
+    if (0.053..0.075).contains(&ioc) && (3.95..4.25).contains(&entropy) && chi2 > 200.0 {
         CipherType::Monoalphabetic
-    } else if (0.028..0.048).contains(&ioc) && (4.25..4.70).contains(&entropy) && chi2 > 200.0 {
-        CipherType::Polyalphabetic
-    } else if (0.055..0.075).contains(&ioc) && (3.95..4.25).contains(&entropy) && chi2 <= 200.0 {
+    } else if (0.028..0.052).contains(&ioc) && (4.25..4.70).contains(&entropy) && chi2 > 200.0 {
+        for (c1, c2) in ciphertext.chars().tuples() {
+            if c1 == c2 {
+                return CipherType::Polyalphabetic;
+            }
+        }
+        CipherType::Playfair
+    } else if (0.053..0.075).contains(&ioc) && (3.95..4.25).contains(&entropy) && chi2 <= 200.0 {
         CipherType::Transposition
     } else {
         CipherType::Unknown

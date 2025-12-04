@@ -17,6 +17,10 @@ fn main() {
     let chi2 = chi2(&spaceless);
     let bi = bigram_log_score(&clean_text_spaced);
     let tri = trigram_log_score(&clean_text_spaced);
+    let quad = quadgram_log_score(&clean_text_spaced);
+    let bi_c = bigram_log_score(&spaceless);
+    let tri_c = trigram_log_score(&spaceless);
+    let quad_c = quadgram_log_score(&spaceless);
     let ioc = index_of_coincidence(&spaceless);
     let entropy = entropy(&spaceless);
     let keylength = input_usize("Enter keylength: ");
@@ -31,7 +35,8 @@ fn main() {
     println!();
     println!();
     println!("Letter and n-gram frequencies:");
-    println!("Chi^2: {chi2}, bigram_score: {bi}, trigram_score: {tri}");
+    println!("Chi^2: {chi2}, bigram_score: {bi}, trigram_score: {tri}, quadgram_score: {quad}");
+    println!("SPACELESS: bigram_score: {bi_c}, trigram_score: {tri_c}, quadgram_score: {quad_c}");
     println!();
     println!("Autorecognition data: ");
     println!("IoC: {ioc}, Shannon entropy: {entropy}");

@@ -25,11 +25,21 @@ pub static LETTER_FREQ_ARRANG: [char; 26] = [
 pub static ENGLISH_ARR: [&str; 403997] =
     include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/arr_words.txt"));
 
+pub static MONOGRAM_FALLBACK_FREQ: f64 = -20.366391538337857980;
+pub static MONOGRAM_FREQ: phf::Map<&str, f64> =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/1gram.txt"));
+
+pub static BIGRAM_FALLBACK_FREQ: f64 = -20.354894854463982057;
 pub static BIGRAM_FREQ: phf::Map<&str, f64> =
     include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/2gram.txt"));
 
+pub static TRIGRAM_FALLBACK_FREQ: f64 = -17.570675758038490244;
 pub static TRIGRAM_FREQ: phf::Map<&str, f64> =
     include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/3gram.txt"));
+
+pub static QUADGRAM_FALLBACK_FREQ: f64 = -17.112621413462218101;
+pub static QUADGRAM_FREQ: phf::Map<&str, f64> =
+    include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/4gram.txt"));
 
 pub static ENGLISH_SET: phf::Set<&'static str> =
     include!(concat!(env!("CARGO_MANIFEST_DIR"), "/data/set_words.txt"));

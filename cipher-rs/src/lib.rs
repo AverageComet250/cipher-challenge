@@ -5,6 +5,7 @@ pub mod dictionary;
 pub mod freq_analysis;
 pub mod keyword;
 pub mod monoalphabetic;
+pub mod playfair;
 pub mod polyalphabetic;
 mod tools;
 
@@ -12,5 +13,6 @@ pub enum CipherType {
     Monoalphabetic,
     Polyalphabetic,
     Transposition,
+    Playfair,
     Unknown,
 }

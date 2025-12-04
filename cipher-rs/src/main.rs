@@ -1,6 +1,6 @@
 use std::io::{self, Write};
 
-use cipher_rs::polyalphabetic;
+use cipher_rs::{playfair, polyalphabetic};
 
 fn main() {
     let aligned = input_bool("Is the text split into words by whitespaces? [y/n] ");
@@ -13,7 +13,19 @@ fn main() {
     match cipher_rs::detection::autodetect(&buffer) {
         cipher_rs::CipherType::Monoalphabetic => monoalphabetic(&buffer, aligned),
         cipher_rs::CipherType::Polyalphabetic => polyalphabetic(&buffer, aligned),
+        cipher_rs::CipherType::Playfair => playfair(&buffer),
         _ => panic!("Cannot decipher this type of cipher,"),
+    }
+}
+
+fn playfair(ciphertext: &str) {
+    println!("Recognised playfair cipher, beginning decryption process... ");
+    let unciphered = playfair::decipher(ciphertext);
+    match unciphered {
+        Some(plaintext) => {
+            println!("{}", plaintext);
+        }
+        None => println!("ERRORERRORERROR"),
     }
 }
 
