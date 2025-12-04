@@ -23,16 +23,19 @@ pub fn decipher(ciphertext: &str) -> Option<String> {
     dbg!(&best_key);
 
     const N: u32 = 10_000;
-    const TEMP_STEP: f64 = 0.2;
+    const TEMP_STEP: f64 = 0.002;
 
-    let mut t = 20.0;
-    while t > 0.5 {
+    let mut t = 0.2;
+    while t > 0.0 {
         t -= TEMP_STEP;
         let mut current_key = best_key;
         let mut current_score = best_score;
         for _ in 0..N {
             let new_key = mutate(current_key, &ciphertext);
-            let decrypted = decrypt_playfair(new_key, &ciphertext);
+            let decrypted: String = decrypt_playfair(new_key, &ciphertext)
+                .chars()
+                .filter(|char| char.is_alphabetic())
+                .collect();
             let new_score = tools::playfair_score(&decrypted);
             if new_score > current_score
                 || fastrand::f64() < f64::exp((new_score - current_score) / t)

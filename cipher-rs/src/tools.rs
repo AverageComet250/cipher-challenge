@@ -147,8 +147,5 @@ pub fn uncipher_vec_and_score_non_aligned(cipher: &[char], text: &str) -> f64 {
 }
 
 pub fn playfair_score(text: &str) -> f64 {
-    let no_spaces_text: String = text.chars().filter(|char| char.is_alphabetic()).collect();
-
-    let quadgram = freq_analysis::quadgram_log_score(&no_spaces_text);
-    quadgram * no_spaces_text.chars().count() as f64
+    freq_analysis::quadgram_log_score(text)
 }

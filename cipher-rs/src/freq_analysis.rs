@@ -82,6 +82,20 @@ pub fn trigram_log_score(text: &str) -> f64 {
     score / i as f64
 }
 
+pub fn quadgram_raw_log_score(text: &str) -> f64 {
+    let mut score = 0.0;
+
+    for (c1, c2, c3, c4) in text.chars().tuple_windows() {
+        if c1 == ' ' || c2 == ' ' || c3 == ' ' || c4 == ' ' {
+            continue;
+        }
+        score += dictionary::QUADGRAM_FREQ
+            .get([c1, c2, c3, c4].iter().collect::<String>().as_str())
+            .unwrap_or(&dictionary::QUADGRAM_FALLBACK_FREQ);
+    }
+    score
+}
+
 pub fn quadgram_log_score(text: &str) -> f64 {
     let mut score = 0.0;
     let mut i = 0;
