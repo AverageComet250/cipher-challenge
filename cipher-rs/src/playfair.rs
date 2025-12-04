@@ -3,6 +3,10 @@ use itertools::Itertools;
 use crate::{dictionary, tools};
 
 pub fn decipher(ciphertext: &str) -> Option<String> {
+    hillclimb(ciphertext)
+}
+
+fn hillclimb(ciphertext: &str) -> Option<String> {
     let ciphertext: String = ciphertext
         .chars()
         .filter(|c| c.is_alphabetic())
@@ -13,6 +17,10 @@ pub fn decipher(ciphertext: &str) -> Option<String> {
     alphabet.swap_remove(9); // j
     fastrand::shuffle(&mut alphabet);
     let mut best_key: [char; 25] = alphabet.try_into().unwrap();
+    best_key = [
+        'r', 's', 't', 'u', 'q', 'w', 'x', 'y', 'z', 'v', 'o', 'l', 'd', 'e', 'g', 'a', 'b', 'c',
+        'f', 'n', 'i', 'k', 'm', 'p', 'h',
+    ];
 
     let decrypted = decrypt_playfair(best_key, &ciphertext);
     let mut best_score = tools::playfair_score(&decrypted);
